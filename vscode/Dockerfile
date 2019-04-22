@@ -1,9 +1,9 @@
-ARG BUILD_FROM=hassioaddons/ubuntu-base:3.1.0
-###############################################################################
-# Build container to get custom vscode extensions.
-###############################################################################
-# hadolint ignore=DL3006
-FROM ${BUILD_FROM} as vscode
+# Just use the code-server docker binary
+FROM codercom/code-server as coder-binary
+# FROM my-codeserver as coder-binary
+
+FROM ubuntu:18.10 as vscode
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Copy in extensions list
 COPY vscode.extensions /root/vscode.extensions
